@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +23,6 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 25.0,
           ),
-          // Center(child: Text('Enter text')),
           const Flexible(
             child: TextField(
               textAlign: TextAlign.center,
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 20.0,
           ),
-          const SelectableText('Result')
+          const SelectableText('Result'),
         ],
       ),
     );
