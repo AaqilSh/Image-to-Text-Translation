@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/services.dart';
+
+import 'widgets/select_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,38 +18,15 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Translate'),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 25.0,
-          ),
-          const Flexible(
-            child: TextField(
-              textAlign: TextAlign.center,
-              maxLengthEnforcement: MaxLengthEnforcement.none,
-              expands: false,
-              maxLines: 12,
-              minLines: null,
-              decoration: InputDecoration.collapsed(
-                hintText: 'Enter text to translate',
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20.0,
-          ),
-          Center(
-            child: TextButton(
-              child: const Text('Translate'),
-              onPressed: () {},
-            ),
-          ),
-          const SizedBox(
-            height: 20.0,
-          ),
-          const SelectableText('Result'),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SelectButton(),
+            MaterialButton(onPressed: () {}, child: const Text('From image'))
+          ],
+        ),
       ),
     );
   }
