@@ -1,7 +1,7 @@
-class TextToTranslate {
+class TranslatedText {
   String? text;
-  int? lenght;
+  int? length;
   String? language;
 
-  TextToTranslate({required this.text, this.lenght, this.language});
+  TranslatedText({required this.text, this.length, this.language});
 }

@@ -1,0 +1,3 @@
+class TranslateService {
+  void translate() {}
+}
