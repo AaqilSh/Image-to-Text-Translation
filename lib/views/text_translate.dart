@@ -35,9 +35,35 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
           const SizedBox(
             height: 20.0,
           ),
+          const Text(
+            'Translate to:',
+            style: TextStyle(fontSize: 18.0),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          DropdownButton(
+            // isExpanded: true,
+            items: const [
+              DropdownMenuItem(
+                child: Text('Hello'),
+                value: 'Hello',
+              ),
+              DropdownMenuItem(child: Text('World'), value: 'World'),
+              DropdownMenuItem(child: Text('World'), value: 'World'),
+            ],
+            value: 'Hello',
+            onTap: () {
+              print('hello');
+            },
+            onChanged: (_) {},
+          ),
           Center(
-            child: TextButton(
-              child: const Text('Translate'),
+            child: ElevatedButton(
+              child: const Text(
+                'Translate',
+                style: TextStyle(fontSize: 18.0),
+              ),
               onPressed: () {},
             ),
           ),
