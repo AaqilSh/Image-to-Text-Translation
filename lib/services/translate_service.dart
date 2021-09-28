@@ -3,6 +3,11 @@ import 'package:translate/services/exceptions.dart';
 import 'package:translate/services/language_identify_service.dart';
 
 class TranslateService {
+  static final TranslateService _instance = TranslateService();
+  static TranslateService get instance => _instance;
+
+  final _languageService = LanguageService.instance;
+
   final _translateModelManager =
       GoogleMlKit.nlp.translateLanguageModelManager();
 
@@ -21,7 +26,7 @@ class TranslateService {
   }
 
   Future<String> translate(String text, String language) async {
-    final _sourceLang = await LanguageService().identifyLanguage(text);
+    final _sourceLang = await _languageService.identifyLanguage(text);
 
     if (!await isModelAvailable(_sourceLang)) {
       await downloadModel(_sourceLang);

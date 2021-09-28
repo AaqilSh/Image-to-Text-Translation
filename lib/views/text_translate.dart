@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:translate/providers/language_provider.dart';
+import 'package:translate/services/languages.dart';
 
 class TextTranslatepage extends StatefulWidget {
   const TextTranslatepage({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class TextTranslatepage extends StatefulWidget {
 }
 
 class _TextTranslatepageState extends State<TextTranslatepage> {
+  String dropDownValue = 'English';
   late TextEditingController _textController;
 
   @override
@@ -60,20 +62,18 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
             height: 20.0,
           ),
           DropdownButton(
-            // isExpanded: true,
-            items: const [
-              DropdownMenuItem(
-                child: Text('Hello'),
-                value: 'Hello',
-              ),
-              DropdownMenuItem(child: Text('World'), value: 'World'),
-              DropdownMenuItem(child: Text('World'), value: 'World'),
-            ],
-            value: 'Hello',
-            onTap: () {
-              print('hello');
+            items: languagesMap.keys
+                .map((String value) =>
+                    DropdownMenuItem<String>(value: value, child: Text(value)))
+                .toList(),
+            hint: const Text('Select language:'),
+            onTap: () {},
+            value: dropDownValue,
+            onChanged: (value) {
+              setState(() {
+                dropDownValue = value!.toString();
+              });
             },
-            onChanged: (_) {},
           ),
           Center(
             child: Consumer<LanguageProvider>(
@@ -83,7 +83,8 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
                   style: TextStyle(fontSize: 18.0),
                 ),
                 onPressed: () {
-                  languageProvider.getLanguage('How are you buddy', 'sq');
+                  languageProvider.getLanguage(
+                      _textController.text, languagesMap[dropDownValue]!);
                 },
               ),
             ),
