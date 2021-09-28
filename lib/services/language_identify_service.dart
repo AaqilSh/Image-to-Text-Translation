@@ -8,7 +8,6 @@ class LanguageService {
     if (text.isEmpty) {
       return '';
     }
-
     final _identifiedLanguage =
         await _languageIdentifier.identifyLanguage(text);
     return _identifiedLanguage;
