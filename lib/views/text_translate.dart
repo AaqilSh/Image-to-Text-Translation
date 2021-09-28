@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:translate/providers/language_provider.dart';
 import 'package:translate/services/languages.dart';
+import 'package:translate/services/status.dart';
 
 class TextTranslatepage extends StatefulWidget {
   const TextTranslatepage({Key? key}) : super(key: key);
@@ -92,7 +93,13 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
           const SizedBox(
             height: 20.0,
           ),
-          const SelectableText('Result'),
+          Consumer<LanguageProvider>(
+              builder: (_, languageProvider, __) =>
+                  (languageProvider.currentStatus == Status.idle)
+                      ? Container()
+                      : (languageProvider.currentStatus == Status.loading)
+                          ? const Text('Loading')
+                          : SelectableText(languageProvider.translatedText)),
         ],
       ),
     );
