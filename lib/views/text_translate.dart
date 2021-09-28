@@ -10,6 +10,20 @@ class TextTranslatepage extends StatefulWidget {
 }
 
 class _TextTranslatepageState extends State<TextTranslatepage> {
+  late TextEditingController _textController;
+
+  @override
+  void initState() {
+    super.initState();
+    _textController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +37,14 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
           const SizedBox(
             height: 25.0,
           ),
-          const Flexible(
+          Flexible(
             child: TextField(
+              controller: _textController,
               textAlign: TextAlign.center,
               expands: false,
               maxLines: 12,
               minLines: null,
-              decoration: InputDecoration.collapsed(
+              decoration: const InputDecoration.collapsed(
                 hintText: 'Enter text to translate',
               ),
             ),
@@ -62,13 +77,13 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
           ),
           Center(
             child: Consumer<LanguageProvider>(
-              builder: (_, provider, __) => ElevatedButton(
+              builder: (_, languageProvider, __) => ElevatedButton(
                 child: const Text(
                   'Translate',
                   style: TextStyle(fontSize: 18.0),
                 ),
                 onPressed: () {
-                  provider.getLanguage('');
+                  languageProvider.getLanguage('How are you buddy', 'sq');
                 },
               ),
             ),

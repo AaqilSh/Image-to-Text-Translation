@@ -11,3 +11,7 @@ class LanguageNotFoundException extends BaseException {
 class ImageNotFoundException extends BaseException {
   ImageNotFoundException(String message) : super(message);
 }
+
+class LanguageModelNotFoundException extends BaseException {
+  LanguageModelNotFoundException(String message) : super(message);
+}

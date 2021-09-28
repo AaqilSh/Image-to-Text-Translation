@@ -56,6 +56,6 @@ Map<String, String> languagesMap = {
   "tr": "Turkish",
   "uk": "Ukrainian",
   "ur": "Urdu",
-  "vi": "Vietnamese,",
-  "zh": 'Chinese'
+  "vi": "Vietnamese",
+  "zh": "Chinese",
 };

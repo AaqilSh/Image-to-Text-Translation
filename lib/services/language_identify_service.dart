@@ -13,4 +13,9 @@ class LanguageService {
     print(_identifiedLanguage);
     return _identifiedLanguage;
   }
+
+  Future identifyPossibleLnaguages(String text) async {
+    final _idlangs = await _languageIdentifier.identifyPossibleLanguages(text);
+    return _idlangs;
+  }
 }

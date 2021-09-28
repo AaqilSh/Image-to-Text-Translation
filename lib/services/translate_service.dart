@@ -1,6 +1,6 @@
 import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:translate/services/exceptions.dart';
 import 'package:translate/services/language_identify_service.dart';
-import 'package:translate/services/languages.dart';
 
 class TranslateService {
   final _translateModelManager =
@@ -21,15 +21,22 @@ class TranslateService {
   }
 
   Future<String> translate(String text, String language) async {
-    if (!await isModelAvailable(languagesMap[language]!)) {
-      downloadModel(languagesMap[language]!);
-    }
     final _sourceLang = await LanguageService().identifyLanguage(text);
 
-    final _translateService = GoogleMlKit.nlp.onDeviceTranslator(
-        sourceLanguage: _sourceLang, targetLanguage: languagesMap[language]!);
-    final _translated = await _translateService.translateText(text);
-    _translateService.close();
-    return _translated;
+    if (!await isModelAvailable(_sourceLang)) {
+      await downloadModel(_sourceLang);
+    }
+    if (!await isModelAvailable(language)) {
+      await downloadModel(language);
+    }
+    try {
+      final _translateService = GoogleMlKit.nlp.onDeviceTranslator(
+          sourceLanguage: _sourceLang, targetLanguage: language);
+      final _translated = await _translateService.translateText(text);
+      _translateService.close();
+      return _translated;
+    } catch (e) {
+      throw LanguageNotFoundException('Given language is not valid');
+    }
   }
 }
