@@ -10,6 +10,7 @@ class LanguageService {
     }
     final _identifiedLanguage =
         await _languageIdentifier.identifyLanguage(text);
+    print(_identifiedLanguage);
     return _identifiedLanguage;
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:translate/providers/language_provider.dart';
 import 'package:translate/views/home_page.dart';
 
 void main() {
@@ -10,9 +12,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<LanguageProvider>(
+            create: (_) => LanguageProvider())
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomePage(),
+      ),
     );
   }
 }

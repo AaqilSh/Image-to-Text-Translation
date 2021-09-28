@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:translate/providers/language_provider.dart';
 
 class TextTranslatepage extends StatefulWidget {
   const TextTranslatepage({Key? key}) : super(key: key);
@@ -59,12 +61,16 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
             onChanged: (_) {},
           ),
           Center(
-            child: ElevatedButton(
-              child: const Text(
-                'Translate',
-                style: TextStyle(fontSize: 18.0),
+            child: Consumer<LanguageProvider>(
+              builder: (_, provider, __) => ElevatedButton(
+                child: const Text(
+                  'Translate',
+                  style: TextStyle(fontSize: 18.0),
+                ),
+                onPressed: () {
+                  provider.getLanguage('');
+                },
               ),
-              onPressed: () {},
             ),
           ),
           const SizedBox(

@@ -8,6 +8,7 @@ class BaseProvider extends ChangeNotifier {
 
   void setStatus(Status status) {
     _currentStatus = status;
+    print('provider');
     notifyListeners();
   }
 }
