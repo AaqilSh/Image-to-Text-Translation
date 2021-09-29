@@ -27,23 +27,19 @@ class TranslateService {
   }
 
   Future<String> translate(String text, String language) async {
-    final _sourceLang = await _languageService.identifyLanguage(text);
-    final destinLang = languagesMap[language];
+    final _destinLang = languagesMap[language];
 
-    if (!await isModelAvailable(_sourceLang)) {
-      await downloadModel(_sourceLang);
-    }
-    if (!await isModelAvailable(destinLang!)) {
-      await downloadModel(destinLang);
-    }
     try {
+      final _sourceLang = await _languageService.identifyLanguage(text);
       final _translateService = GoogleMlKit.nlp.onDeviceTranslator(
-          sourceLanguage: _sourceLang, targetLanguage: destinLang);
+          sourceLanguage: _sourceLang, targetLanguage: _destinLang!);
       final _translated = await _translateService.translateText(text);
       _translateService.close();
       return _translated;
+    } on LanguageNotFoundException {
+      throw LanguageModelNotFoundException('Language not found');
     } catch (e) {
-      throw LanguageNotFoundException('Given language is not valid');
+      throw TranslaterException('Translator not operating');
     }
   }
 }

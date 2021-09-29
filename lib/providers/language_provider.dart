@@ -4,8 +4,8 @@ import 'package:translate/services/status.dart';
 import 'package:translate/services/translate_service.dart';
 
 class LanguageProvider extends BaseProvider {
-  String? _language = 'English';
-  String get language => _language!;
+  String? _language;
+  String? get language => _language;
   String? _translatedText;
   String get translatedText => _translatedText!;
 
@@ -13,6 +13,7 @@ class LanguageProvider extends BaseProvider {
 
   void setEndLanguage(String language) {
     _language = language;
+    print(language);
     setStatus(Status.idle);
   }
 
@@ -20,7 +21,10 @@ class LanguageProvider extends BaseProvider {
     setStatus(Status.loading);
     if (text.isNotEmpty) {
       try {
-        _translatedText = await _translateService.translate(text, language);
+        if (_language!.isEmpty) {
+          _language = 'English';
+        }
+        _translatedText = await _translateService.translate(text, language!);
         setStatus(Status.loaded);
       } on LanguageNotFoundException {
         setStatus(Status.error);
