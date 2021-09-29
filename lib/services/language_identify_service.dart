@@ -22,13 +22,13 @@ class LanguageService {
     }
   }
 
-  Future<List<String>> getText(String? path) async {
+  Future<String> getText(String? path) async {
     final _image = InputImage.fromFilePath(path!);
     final recognizedTexts = await _textRecongnizer.processImage(_image);
     List<String> texts = [];
     for (var block in recognizedTexts.blocks) {
       texts.add(block.text);
     }
-    return texts;
+    return texts.join('');
   }
 }

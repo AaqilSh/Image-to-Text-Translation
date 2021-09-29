@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:translate/providers/image_provider.dart';
+import 'package:translate/services/languages.dart';
 import 'package:translate/services/status.dart';
 
 class ImageTranslatePage extends StatefulWidget {
@@ -22,32 +23,41 @@ class _ImageTranslatePageState extends State<ImageTranslatePage> {
         body: Column(
           children: [
             Consumer<ImageViewProvider>(
-              builder: (_, imageProvider, __) =>
-                  (imageProvider.currentStatus == Status.loaded)
-                      ? Column(
-                          children: [
-                            Image.file(File(imageProvider.imagePath)),
-                            const SizedBox(
-                              height: 25.0,
-                            ),
-                            ElevatedButton(
-                                onPressed: imageProvider.getImage,
-                                child: const Text('Translate')),
-                            const SizedBox(
-                              height: 25.0,
-                            ),
-                            ElevatedButton(
-                                onPressed: imageProvider.getImage,
-                                child: const Text('Select another image')),
-                          ],
+              builder: (_, imageProvider, __) => (imageProvider.currentStatus ==
+                      Status.loaded)
+                  ? Column(
+                      children: [
+                        Image.file(File(imageProvider.imagePath)),
+                        const SizedBox(
+                          height: 25.0,
+                        ),
+                        DropdownButton(
+                          items: languagesMap.keys
+                              .map((String value) => DropdownMenuItem<String>(
+                                  value: value, child: Text(value)))
+                              .toList(),
+                          value: imageProvider.language,
+                          onChanged: (value) =>
+                              imageProvider.setEndLanguage(value.toString()),
+                        ),
+                        ElevatedButton(
+                            onPressed: imageProvider.translateImage,
+                            child: const Text('Translate')),
+                        const SizedBox(
+                          height: 25.0,
+                        ),
+                        ElevatedButton(
+                            onPressed: imageProvider.getImage,
+                            child: const Text('Select another image')),
+                      ],
+                    )
+                  : (imageProvider.currentStatus == Status.loading)
+                      ? const Center(
+                          child: CircularProgressIndicator(),
                         )
-                      : (imageProvider.currentStatus == Status.loading)
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : ElevatedButton(
-                              onPressed: imageProvider.getImage,
-                              child: const Text('Select image')),
+                      : ElevatedButton(
+                          onPressed: imageProvider.getImage,
+                          child: const Text('Select image')),
             )
           ],
         ));
