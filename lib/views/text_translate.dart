@@ -92,9 +92,12 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
             height: 20.0,
           ),
           Consumer<LanguageProvider>(
-              builder: (_, languageProvider, __) =>
-                  (languageProvider.currentStatus == Status.idle)
-                      ? Container()
+              builder: (_, languageProvider, __) => (languageProvider
+                          .currentStatus ==
+                      Status.idle)
+                  ? Container()
+                  : (languageProvider.currentStatus == Status.error)
+                      ? const Text('Language not identified')
                       : (languageProvider.currentStatus == Status.loading)
                           ? const Text('Loading')
                           : SelectableText(languageProvider.translatedText)),

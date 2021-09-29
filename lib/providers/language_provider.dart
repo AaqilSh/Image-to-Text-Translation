@@ -1,4 +1,5 @@
 import 'package:translate/providers/base_provider.dart';
+import 'package:translate/services/exceptions.dart';
 import 'package:translate/services/status.dart';
 import 'package:translate/services/translate_service.dart';
 
@@ -18,8 +19,14 @@ class LanguageProvider extends BaseProvider {
   void translateWord(String text) async {
     setStatus(Status.loading);
     if (text.isNotEmpty) {
-      _translatedText = await _translateService.translate(text, _language!);
-      setStatus(Status.loaded);
+      try {
+        _translatedText = await _translateService.translate(text, language);
+        setStatus(Status.loaded);
+      } on LanguageNotFoundException {
+        setStatus(Status.error);
+      }
+    } else {
+      setStatus(Status.idle);
     }
   }
 }
