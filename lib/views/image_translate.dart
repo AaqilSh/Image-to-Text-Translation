@@ -24,6 +24,7 @@ class _ImageTranslatePageState extends State<ImageTranslatePage> {
           title: const Text('Image Translation'),
         ),
         body: ListView(
+          shrinkWrap: true,
           children: [
             (imageProvider.currentStatus == Status.loaded ||
                     imageProvider.currentStatus == Status.translated)
@@ -51,14 +52,20 @@ class _ImageTranslatePageState extends State<ImageTranslatePage> {
                       ElevatedButton(
                           onPressed: imageProvider.getImage,
                           child: const Text('Select another image')),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
                       (imageProvider.currentStatus == Status.translated)
                           ? Text(imageProvider.translated!)
                           : Container()
                     ],
                   )
                 : (imageProvider.currentStatus == Status.loading)
-                    ? const Center(
-                        child: CircularProgressIndicator(),
+                    ? const Align(
+                        alignment: Alignment.center,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
                       )
                     : Center(
                         child: ElevatedButton(
