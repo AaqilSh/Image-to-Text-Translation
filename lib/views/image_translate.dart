@@ -24,15 +24,31 @@ class _ImageTranslatePageState extends State<ImageTranslatePage> {
             Consumer<ImageViewProvider>(
               builder: (_, imageProvider, __) =>
                   (imageProvider.currentStatus == Status.loaded)
-                      ? Image.file(File(imageProvider.imagePath))
-                      : Container(),
-            ),
-            Consumer<ImageViewProvider>(
-                builder: (_, imageProvider, __) => Center(
-                      child: ElevatedButton(
-                          onPressed: imageProvider.getImage,
-                          child: const Text('Select image')),
-                    )),
+                      ? Column(
+                          children: [
+                            Image.file(File(imageProvider.imagePath)),
+                            const SizedBox(
+                              height: 25.0,
+                            ),
+                            ElevatedButton(
+                                onPressed: imageProvider.getImage,
+                                child: const Text('Translate')),
+                            const SizedBox(
+                              height: 25.0,
+                            ),
+                            ElevatedButton(
+                                onPressed: imageProvider.getImage,
+                                child: const Text('Select another image')),
+                          ],
+                        )
+                      : (imageProvider.currentStatus == Status.loading)
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : ElevatedButton(
+                              onPressed: imageProvider.getImage,
+                              child: const Text('Select image')),
+            )
           ],
         ));
   }
