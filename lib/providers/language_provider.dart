@@ -13,7 +13,6 @@ class LanguageProvider extends BaseProvider {
 
   void setEndLanguage(String language) {
     _language = language;
-    print(language);
     setStatus(Status.idle);
   }
 
@@ -27,6 +26,8 @@ class LanguageProvider extends BaseProvider {
         _translatedText = await _translateService.translate(text, language!);
         setStatus(Status.loaded);
       } on LanguageNotFoundException {
+        setStatus(Status.error);
+      } catch (e) {
         setStatus(Status.error);
       }
     } else {

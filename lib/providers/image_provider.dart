@@ -3,7 +3,7 @@ import 'package:translate/services/exceptions.dart';
 import 'package:translate/services/media_service.dart';
 import 'package:translate/services/status.dart';
 
-class ImageProvider extends BaseProvider {
+class ImageViewProvider extends BaseProvider {
   String? _imagePath;
   String get imagePath => _imagePath!;
 

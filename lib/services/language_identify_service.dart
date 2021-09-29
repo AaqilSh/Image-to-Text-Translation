@@ -17,12 +17,7 @@ class LanguageService {
           await _languageIdentifier.identifyLanguage(text);
       return _identifiedLanguage;
     } catch (e) {
-      throw LanguageNotFoundException('Language is unable to found');
+      throw LanguageNotFoundException('Unable to find language');
     }
-  }
-
-  Future identifyPossibleLanguages(String text) async {
-    final _idlangs = await _languageIdentifier.identifyPossibleLanguages(text);
-    return _idlangs;
   }
 }

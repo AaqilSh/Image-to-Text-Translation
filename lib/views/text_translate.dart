@@ -34,8 +34,8 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
         title: const Text('Translate'),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      body: ListView(
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(
             height: 25.0,
@@ -55,27 +55,34 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
           const SizedBox(
             height: 20.0,
           ),
-          const Text(
-            'Translate to:',
-            style: TextStyle(fontSize: 18.0),
+          const Center(
+            child: Text(
+              'Translate to:',
+              style: TextStyle(fontSize: 18.0),
+            ),
           ),
           const SizedBox(
             height: 20.0,
           ),
           Consumer<LanguageProvider>(
-            builder: (_, languageProvider, __) => DropdownButton(
-              items: languagesMap.keys
-                  .map((String value) => DropdownMenuItem<String>(
-                      value: value, child: Text(value)))
-                  .toList(),
-              value: languageProvider.language,
-              onChanged: (value) =>
-                  languageProvider.setEndLanguage(value.toString()),
+            builder: (_, languageProvider, __) => Center(
+              child: DropdownButton(
+                items: languagesMap.keys
+                    .map((String value) => DropdownMenuItem<String>(
+                        value: value, child: Text(value)))
+                    .toList(),
+                value: languageProvider.language,
+                onChanged: (value) =>
+                    languageProvider.setEndLanguage(value.toString()),
+              ),
             ),
           ),
-          Center(
-            child: Consumer<LanguageProvider>(
-              builder: (_, languageProvider, __) => ElevatedButton(
+          const SizedBox(
+            height: 20.0,
+          ),
+          Consumer<LanguageProvider>(
+            builder: (_, languageProvider, __) => Center(
+              child: ElevatedButton(
                 child: const Text(
                   'Translate',
                   style: TextStyle(fontSize: 18.0),
@@ -91,16 +98,22 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
           const SizedBox(
             height: 20.0,
           ),
-          Consumer<LanguageProvider>(
-              builder: (_, languageProvider, __) => (languageProvider
-                          .currentStatus ==
-                      Status.idle)
-                  ? Container()
-                  : (languageProvider.currentStatus == Status.error)
-                      ? const Text('Language not identified')
-                      : (languageProvider.currentStatus == Status.loading)
-                          ? const Text('Loading')
-                          : SelectableText(languageProvider.translatedText)),
+          Center(
+            child: Container(
+              margin: const EdgeInsets.only(top: 25.0),
+              child: Consumer<LanguageProvider>(
+                  builder: (_, languageProvider, __) =>
+                      (languageProvider.currentStatus == Status.idle)
+                          ? Container()
+                          : (languageProvider.currentStatus == Status.error)
+                              ? const Text('Language not identified')
+                              : (languageProvider.currentStatus ==
+                                      Status.loading)
+                                  ? const Text('Loading')
+                                  : SelectableText(
+                                      languageProvider.translatedText)),
+            ),
+          ),
         ],
       ),
     );

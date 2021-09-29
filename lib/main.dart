@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:translate/providers/image_provider.dart';
 import 'package:translate/providers/language_provider.dart';
 import 'package:translate/views/home_page.dart';
 
@@ -15,7 +16,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<LanguageProvider>(
-            create: (_) => LanguageProvider())
+            create: (_) => LanguageProvider()),
+        ChangeNotifierProvider<ImageViewProvider>(
+            create: (_) => ImageViewProvider())
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
