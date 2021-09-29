@@ -16,49 +16,54 @@ class ImageTranslatePage extends StatefulWidget {
 class _ImageTranslatePageState extends State<ImageTranslatePage> {
   @override
   Widget build(BuildContext context) {
+    final imageProvider = Provider.of<ImageViewProvider>(
+      context,
+    );
     return Scaffold(
         appBar: AppBar(
           title: const Text('Image Translation'),
         ),
-        body: Column(
+        body: ListView(
           children: [
-            Consumer<ImageViewProvider>(
-              builder: (_, imageProvider, __) => (imageProvider.currentStatus ==
-                      Status.loaded)
-                  ? Column(
-                      children: [
-                        Image.file(File(imageProvider.imagePath)),
-                        const SizedBox(
-                          height: 25.0,
-                        ),
-                        DropdownButton(
-                          items: languagesMap.keys
-                              .map((String value) => DropdownMenuItem<String>(
-                                  value: value, child: Text(value)))
-                              .toList(),
-                          value: imageProvider.language,
-                          onChanged: (value) =>
-                              imageProvider.setEndLanguage(value.toString()),
-                        ),
-                        ElevatedButton(
-                            onPressed: imageProvider.translateImage,
-                            child: const Text('Translate')),
-                        const SizedBox(
-                          height: 25.0,
-                        ),
-                        ElevatedButton(
-                            onPressed: imageProvider.getImage,
-                            child: const Text('Select another image')),
-                      ],
-                    )
-                  : (imageProvider.currentStatus == Status.loading)
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : ElevatedButton(
+            (imageProvider.currentStatus == Status.loaded)
+                ? Column(
+                    children: [
+                      Image.file(File(imageProvider.imagePath)),
+                      const SizedBox(
+                        height: 25.0,
+                      ),
+                      DropdownButton(
+                        items: languagesMap.keys
+                            .map((String value) => DropdownMenuItem<String>(
+                                value: value, child: Text(value)))
+                            .toList(),
+                        value: imageProvider.language,
+                        onChanged: (value) =>
+                            imageProvider.setEndLanguage(value.toString()),
+                      ),
+                      ElevatedButton(
+                          onPressed: imageProvider.translateImage,
+                          child: const Text('Translate')),
+                      const SizedBox(
+                        height: 25.0,
+                      ),
+                      ElevatedButton(
                           onPressed: imageProvider.getImage,
-                          child: const Text('Select image')),
-            )
+                          child: const Text('Select another image')),
+                      (imageProvider.currentStatus == Status.translated)
+                          ? Text(imageProvider.translated!)
+                          : Container()
+                    ],
+                  )
+                : (imageProvider.currentStatus == Status.loading)
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Center(
+                        child: ElevatedButton(
+                            onPressed: imageProvider.getImage,
+                            child: const Text('Select image')),
+                      ),
           ],
         ));
   }

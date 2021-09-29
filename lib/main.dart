@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<LanguageProvider>(
-            create: (_) => LanguageProvider()),
+        ChangeNotifierProvider<TranslateProvider>(
+            create: (_) => TranslateProvider()),
         ChangeNotifierProvider<ImageViewProvider>(
             create: (_) => ImageViewProvider())
       ],

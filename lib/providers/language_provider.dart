@@ -1,10 +1,9 @@
 import 'package:translate/providers/base_provider.dart';
-import 'package:translate/providers/image_provider.dart';
 import 'package:translate/services/exceptions.dart';
 import 'package:translate/services/status.dart';
 import 'package:translate/services/translate_service.dart';
 
-class LanguageProvider extends BaseProvider {
+class TranslateProvider extends BaseProvider {
   String? _language;
   String? get language => _language;
   String? _translatedText;
