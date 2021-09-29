@@ -23,12 +23,13 @@ class LanguageService {
   }
 
   Future<String> getText(String? path) async {
+    ///Returns all words from the image as one space seperated string
     final _image = InputImage.fromFilePath(path!);
     final recognizedTexts = await _textRecongnizer.processImage(_image);
     List<String> texts = [];
     for (var block in recognizedTexts.blocks) {
       texts.add(block.text);
     }
-    return texts.join('');
+    return texts.join(' ');
   }
 }

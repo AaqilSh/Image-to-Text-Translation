@@ -1,5 +1,4 @@
 import 'package:translate/providers/base_provider.dart';
-import 'package:translate/providers/language_provider.dart';
 import 'package:translate/services/exceptions.dart';
 import 'package:translate/services/language_identify_service.dart';
 import 'package:translate/services/media_service.dart';
@@ -10,8 +9,8 @@ class ImageViewProvider extends BaseProvider {
   String? _imagePath;
   String get imagePath => _imagePath!;
 
-  String? _language;
-  String? get language => _language;
+  String _language = 'English';
+  String get language => _language;
 
   String? _translated;
   String? get translated => _translated;
@@ -22,9 +21,11 @@ class ImageViewProvider extends BaseProvider {
   final _languageservice = LanguageService.instance;
   final _translateservice = TranslateService.instance;
 
-  final textProvider = LanguageProvider();
-
   void getImage() async {
+    if (_imagePath != null) {
+      //Clears previous image if any
+      _imagePath = null;
+    }
     setStatus(Status.loading);
     try {
       _imagePath = await MediaService().pickImage();
@@ -44,8 +45,7 @@ class ImageViewProvider extends BaseProvider {
   void translateImage() async {
     setStatus(Status.loading);
     _imageText = await _languageservice.getText(_imagePath);
-    _translated = await _translateservice.translate(_imageText!, language!);
+    _translated = await _translateservice.translate(_imageText!, language);
     setStatus(Status.translated);
-    print(_translated);
   }
 }

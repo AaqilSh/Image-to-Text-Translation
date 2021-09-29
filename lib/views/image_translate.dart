@@ -25,7 +25,8 @@ class _ImageTranslatePageState extends State<ImageTranslatePage> {
         ),
         body: ListView(
           children: [
-            (imageProvider.currentStatus == Status.loaded)
+            (imageProvider.currentStatus == Status.loaded ||
+                    imageProvider.currentStatus == Status.translated)
                 ? Column(
                     children: [
                       Image.file(File(imageProvider.imagePath)),

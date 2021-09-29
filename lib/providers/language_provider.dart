@@ -34,6 +34,4 @@ class TranslateProvider extends BaseProvider {
       setStatus(Status.idle);
     }
   }
-
-  void translateImage() {}
 }
