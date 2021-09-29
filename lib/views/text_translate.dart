@@ -63,20 +63,12 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
             height: 20.0,
           ),
           Consumer<LanguageProvider>(
-            builder: (_, languageProvider, __) =>
-                // child:
-                DropdownButton(
+            builder: (_, languageProvider, __) => DropdownButton(
               items: languagesMap.keys
                   .map((String value) => DropdownMenuItem<String>(
                       value: value, child: Text(value)))
                   .toList(),
-              // hint: const Text('Select language:'),
-              value: dropDownValue,
-              // onChanged: (value) {
-              //   setState(() {
-              //     dropDownValue = value!.toString();
-              //   });
-              // },
+              value: languageProvider.language,
               onChanged: (value) =>
                   languageProvider.setEndLanguage(value.toString()),
             ),
@@ -90,8 +82,7 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
                 ),
                 onPressed: () {
                   (_textController.text.isNotEmpty)
-                      ? languageProvider.getLanguage(
-                          _textController.text, languagesMap[dropDownValue]!)
+                      ? languageProvider.translateWord(_textController.text)
                       : null;
                 },
               ),
