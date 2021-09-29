@@ -11,7 +11,7 @@ class LanguageProvider extends BaseProvider {
   final _translateService = TranslateService.instance;
 
   void getLanguage(String text, String to) async {
-    if (!text.isEmpty) {
+    if (text.isNotEmpty) {
       setStatus(Status.loading);
       _translatedText = await _translateService.translate(text, to);
       setStatus(Status.loaded);

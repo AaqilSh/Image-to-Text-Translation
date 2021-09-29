@@ -68,7 +68,6 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
                     DropdownMenuItem<String>(value: value, child: Text(value)))
                 .toList(),
             hint: const Text('Select language:'),
-            onTap: () {},
             value: dropDownValue,
             onChanged: (value) {
               setState(() {
@@ -84,8 +83,10 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
                   style: TextStyle(fontSize: 18.0),
                 ),
                 onPressed: () {
-                  languageProvider.getLanguage(
-                      _textController.text, languagesMap[dropDownValue]!);
+                  (_textController.text.isNotEmpty)
+                      ? languageProvider.getLanguage(
+                          _textController.text, languagesMap[dropDownValue]!)
+                      : null;
                 },
               ),
             ),
