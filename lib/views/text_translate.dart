@@ -62,18 +62,24 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
           const SizedBox(
             height: 20.0,
           ),
-          DropdownButton(
-            items: languagesMap.keys
-                .map((String value) =>
-                    DropdownMenuItem<String>(value: value, child: Text(value)))
-                .toList(),
-            hint: const Text('Select language:'),
-            value: dropDownValue,
-            onChanged: (value) {
-              setState(() {
-                dropDownValue = value!.toString();
-              });
-            },
+          Consumer<LanguageProvider>(
+            builder: (_, languageProvider, __) =>
+                // child:
+                DropdownButton(
+              items: languagesMap.keys
+                  .map((String value) => DropdownMenuItem<String>(
+                      value: value, child: Text(value)))
+                  .toList(),
+              // hint: const Text('Select language:'),
+              value: dropDownValue,
+              // onChanged: (value) {
+              //   setState(() {
+              //     dropDownValue = value!.toString();
+              //   });
+              // },
+              onChanged: (value) =>
+                  languageProvider.setEndLanguage(value.toString()),
+            ),
           ),
           Center(
             child: Consumer<LanguageProvider>(
