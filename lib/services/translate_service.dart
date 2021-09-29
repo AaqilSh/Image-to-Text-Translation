@@ -8,7 +8,6 @@ class TranslateService {
   static TranslateService get instance => _instance;
 
   final _languageService = LanguageService.instance;
-
   final _translateModelManager =
       GoogleMlKit.nlp.translateLanguageModelManager();
 
