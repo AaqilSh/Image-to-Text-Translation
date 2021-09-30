@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:translate/services/status.dart';
 
-class BaseProvider extends ChangeNotifier {
+class BaseViewModel extends ChangeNotifier {
   Status _currentStatus = Status.idle;
 
   Status get currentStatus => _currentStatus;

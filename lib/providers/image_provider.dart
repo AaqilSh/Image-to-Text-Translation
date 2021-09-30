@@ -1,12 +1,10 @@
 import 'package:translate/providers/base_provider.dart';
 import 'package:translate/services/exceptions.dart';
-import 'package:translate/services/recognition_service.dart';
 import 'package:translate/services/media_service.dart';
 import 'package:translate/services/status.dart';
 import 'package:translate/services/translate_service.dart';
-import 'package:translate/services/text_recognition_service.dart';
 
-class ImageViewProvider extends BaseProvider {
+class ImageViewModel extends BaseProvider {
   String? _imagePath;
   String get imagePath => _imagePath!;
 
@@ -15,9 +13,6 @@ class ImageViewProvider extends BaseProvider {
 
   String? _translatedText;
   String? get translatedText => _translatedText;
-
-  // String? _imageText;
-  // String? get imageText => _imageText;
 
   final _translateservice = TranslateService.instance;
 
@@ -44,8 +39,12 @@ class ImageViewProvider extends BaseProvider {
 
   void translateImage() async {
     setStatus(Status.loading);
-    _translatedText =
-        await _translateservice.translateFromImage(_imagePath!, language);
-    setStatus(Status.translated);
+    try {
+      _translatedText =
+          await _translateservice.translateFromImage(_imagePath!, language);
+      setStatus(Status.translated);
+    } catch (e) {
+      setStatus(Status.error);
+    }
   }
 }

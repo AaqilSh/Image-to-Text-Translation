@@ -3,7 +3,7 @@ import 'package:translate/services/exceptions.dart';
 import 'package:translate/services/status.dart';
 import 'package:translate/services/translate_service.dart';
 
-class TranslateProvider extends BaseProvider {
+class TranslateViewModel extends BaseViewModel {
   String? _language;
   String? get language => _language;
   String? _translatedText;
