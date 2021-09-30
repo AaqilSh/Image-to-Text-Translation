@@ -8,8 +8,8 @@ class LanguageNotFoundException extends BaseException {
   LanguageNotFoundException(String message) : super(message);
 }
 
-class TranslaterException extends BaseException {
-  TranslaterException(String message) : super(message);
+class TranslatorException extends BaseException {
+  TranslatorException(String message) : super(message);
 }
 
 class ImageNotFoundException extends BaseException {

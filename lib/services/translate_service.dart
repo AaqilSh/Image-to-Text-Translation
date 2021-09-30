@@ -39,7 +39,7 @@ class TranslateService {
     } on LanguageNotFoundException {
       throw LanguageModelNotFoundException('Language not found');
     } catch (e) {
-      throw TranslaterException('Translator not operating');
+      throw TranslatorException('Translator not operating');
     }
   }
 
@@ -57,7 +57,7 @@ class TranslateService {
     } on LanguageNotFoundException {
       throw LanguageModelNotFoundException('Language not found');
     } catch (e) {
-      throw TranslaterException('Translator not operating');
+      throw TranslatorException('Translator not operating');
     }
   }
 }
