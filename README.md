@@ -1,16 +1,72 @@
-# translate
+# Translate app
 
-A new Flutter project.
+This is a translate app built with flutter and google machine learning kit.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Translate texts to other languages
+- Auto detect given text language
+- Upload an image and translate content from imgae to other languages
 
-A few resources to get you started if this is your first Flutter project:
+### Languages support
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[
+Afrikaans"
+Arabic"
+Belarusian"
+Bulgarian"
+Bengali"
+Catalan"
+Czech"
+Welsh"
+Danish"
+German"
+Greek"
+English"
+Esperanto"
+Spanish"
+Estonian"
+Persian"
+Finnish"
+French"
+Irish"
+Galician"
+Gujarati"
+Hebrew"
+Hindi"
+Croatian"
+Haitian"
+Hungarian"
+Indonesian"
+Icelandic"
+Italian"
+Japanese"
+Georgian"
+Kannada"
+Korean"
+Lithuanian"
+Latvian"
+Macedonian"
+Marathi"
+Malay"
+Maltese"
+Dutch"
+Norwegian"
+Polish"
+Portuguese"
+Romanian"
+Russian"
+Slovak"
+Slovenian"
+Albanian"
+Swedish"
+Swahili"
+Tamil"
+Telugu"
+Thai"
+Tagalog"
+Turkish"
+Ukrainian"
+Urdu"
+Vietnamese"
+Chinese"]
