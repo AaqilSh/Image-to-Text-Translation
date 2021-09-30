@@ -16,7 +16,7 @@ class ImageTranslatePage extends StatefulWidget {
 class _ImageTranslatePageState extends State<ImageTranslatePage> {
   @override
   Widget build(BuildContext context) {
-    final imageProvider = Provider.of<ImageViewProvider>(
+    final imageProvider = Provider.of<ImageViewModel>(
       context,
     );
     return Scaffold(
@@ -67,10 +67,13 @@ class _ImageTranslatePageState extends State<ImageTranslatePage> {
                           child: CircularProgressIndicator(),
                         ),
                       )
-                    : Center(
-                        child: ElevatedButton(
-                            onPressed: imageProvider.getImage,
-                            child: const Text('Select image')),
+                    : Align(
+                        alignment: Alignment.center,
+                        child: Center(
+                          child: ElevatedButton(
+                              onPressed: imageProvider.getImage,
+                              child: const Text('Select image')),
+                        ),
                       ),
           ],
         ));

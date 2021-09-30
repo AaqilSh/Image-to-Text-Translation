@@ -64,7 +64,7 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
           const SizedBox(
             height: 20.0,
           ),
-          Consumer<TranslateProvider>(
+          Consumer<TranslateViewModel>(
             builder: (_, languageProvider, __) => Center(
               child: DropdownButton(
                 items: languagesMap.keys
@@ -80,7 +80,7 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
           const SizedBox(
             height: 20.0,
           ),
-          Consumer<TranslateProvider>(
+          Consumer<TranslateViewModel>(
             builder: (_, languageProvider, __) => Center(
               child: ElevatedButton(
                 child: const Text(
@@ -101,7 +101,7 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 25.0),
-              child: Consumer<TranslateProvider>(
+              child: Consumer<TranslateViewModel>(
                   builder: (_, languageProvider, __) =>
                       (languageProvider.currentStatus == Status.idle)
                           ? Container()
