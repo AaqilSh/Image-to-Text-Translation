@@ -1,9 +1,10 @@
 import 'package:translate/providers/base_provider.dart';
 import 'package:translate/services/exceptions.dart';
-import 'package:translate/services/language_identify_service.dart';
+import 'package:translate/services/recognition_service.dart';
 import 'package:translate/services/media_service.dart';
 import 'package:translate/services/status.dart';
 import 'package:translate/services/translate_service.dart';
+import 'package:translate/services/text_recognition_service.dart';
 
 class ImageViewProvider extends BaseProvider {
   String? _imagePath;

@@ -7,7 +7,6 @@ class LanguageService {
 
   final LanguageIdentifier _languageIdentifier =
       GoogleMlKit.nlp.languageIdentifier();
-  final _textRecongnizer = GoogleMlKit.vision.textDetector();
 
   Future<String> identifyLanguage(String text) async {
     if (text.isEmpty) {
@@ -20,16 +19,5 @@ class LanguageService {
     } catch (e) {
       throw LanguageNotFoundException('Unable to find language');
     }
-  }
-
-  Future<String> getTextFromImage(String? path) async {
-    ///Returns all words from the image as one space seperated string
-    final _image = InputImage.fromFilePath(path!);
-    final recognizedTexts = await _textRecongnizer.processImage(_image);
-    List<String> texts = [];
-    for (var block in recognizedTexts.blocks) {
-      texts.add(block.text);
-    }
-    return texts.join(' ');
   }
 }

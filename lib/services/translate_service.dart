@@ -1,6 +1,6 @@
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:translate/services/exceptions.dart';
-import 'package:translate/services/language_identify_service.dart';
+import 'package:translate/services/recognition_service.dart';
 import 'package:translate/services/languages.dart';
 
 class TranslateService {
