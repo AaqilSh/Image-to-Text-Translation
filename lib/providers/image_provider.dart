@@ -16,10 +16,9 @@ class ImageViewProvider extends BaseProvider {
   String? _translatedText;
   String? get translatedText => _translatedText;
 
-  String? _imageText;
-  String? get imageText => _imageText;
+  // String? _imageText;
+  // String? get imageText => _imageText;
 
-  final _languageservice = LanguageService.instance;
   final _translateservice = TranslateService.instance;
 
   void getImage() async {
@@ -45,8 +44,8 @@ class ImageViewProvider extends BaseProvider {
 
   void translateImage() async {
     setStatus(Status.loading);
-    _imageText = await _languageservice.getTextFromImage(_imagePath);
-    _translatedText = await _translateservice.translate(_imageText!, language);
+    _translatedText =
+        await _translateservice.translateFromImage(_imagePath!, language);
     setStatus(Status.translated);
   }
 }

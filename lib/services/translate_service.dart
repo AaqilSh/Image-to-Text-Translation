@@ -2,6 +2,7 @@ import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:translate/services/exceptions.dart';
 import 'package:translate/services/recognition_service.dart';
 import 'package:translate/services/languages.dart';
+import 'package:translate/services/text_recognition_service.dart';
 
 class TranslateService {
   static final TranslateService _instance = TranslateService();
@@ -33,6 +34,24 @@ class TranslateService {
       final _translateService = GoogleMlKit.nlp.onDeviceTranslator(
           sourceLanguage: _sourceLang, targetLanguage: _destinLang!);
       final _translated = await _translateService.translateText(text);
+      _translateService.close();
+      return _translated;
+    } on LanguageNotFoundException {
+      throw LanguageModelNotFoundException('Language not found');
+    } catch (e) {
+      throw TranslaterException('Translator not operating');
+    }
+  }
+
+  Future<String> translateFromImage(String imagePath, String language) async {
+    final _destinLang = languagesMap[language];
+    final _imageText =
+        await TextRecongnitionService().getTextFromImage(imagePath);
+    try {
+      final _sourceLang = await _languageService.identifyLanguage(_imageText);
+      final _translateService = GoogleMlKit.nlp.onDeviceTranslator(
+          sourceLanguage: _sourceLang, targetLanguage: _destinLang!);
+      final _translated = await _translateService.translateText(_imageText);
       _translateService.close();
       return _translated;
     } on LanguageNotFoundException {
