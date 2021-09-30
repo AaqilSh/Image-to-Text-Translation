@@ -56,7 +56,7 @@ class _ImageTranslatePageState extends State<ImageTranslatePage> {
                         height: 20.0,
                       ),
                       (imageProvider.currentStatus == Status.translated)
-                          ? Text(imageProvider.translated!)
+                          ? Text(imageProvider.translatedText!)
                           : Container()
                     ],
                   )

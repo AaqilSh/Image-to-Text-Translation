@@ -22,7 +22,7 @@ class LanguageService {
     }
   }
 
-  Future<String> getText(String? path) async {
+  Future<String> getTextFromImage(String? path) async {
     ///Returns all words from the image as one space seperated string
     final _image = InputImage.fromFilePath(path!);
     final recognizedTexts = await _textRecongnizer.processImage(_image);
