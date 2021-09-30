@@ -1,11 +1,13 @@
+import 'package:translate/models/text_model.dart';
 import 'package:translate/providers/base_provider.dart';
 import 'package:translate/services/exceptions.dart';
 import 'package:translate/services/status.dart';
 import 'package:translate/services/translate_service.dart';
 
 class TranslateViewModel extends BaseViewModel {
-  String? _language;
-  String? get language => _language;
+  String _language = 'English';
+  String get language => _language;
+
   String? _translatedText;
   String get translatedText => _translatedText!;
 
@@ -20,9 +22,6 @@ class TranslateViewModel extends BaseViewModel {
     setStatus(Status.loading);
     if (text.isNotEmpty) {
       try {
-        if (_language!.isEmpty) {
-          _language = 'English';
-        }
         _translatedText = await _translateService.translate(text, language!);
         setStatus(Status.loaded);
       } on LanguageNotFoundException {

@@ -111,7 +111,7 @@ class _TextTranslatepageState extends State<TextTranslatepage> {
                                       Status.loading)
                                   ? const Text('Loading')
                                   : SelectableText(
-                                      languageProvider.translatedText)),
+                                      languageProvider.translatedText!)),
             ),
           ),
         ],

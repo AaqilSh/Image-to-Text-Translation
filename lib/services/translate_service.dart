@@ -1,4 +1,5 @@
 import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:translate/models/text_model.dart';
 import 'package:translate/services/exceptions.dart';
 import 'package:translate/services/language_recognition_service.dart';
 import 'package:translate/services/languages.dart';
@@ -34,9 +35,9 @@ class TranslateService {
           await _languageRecognitionService.identifyLanguage(text);
       final _translateService = GoogleMlKit.nlp.onDeviceTranslator(
           sourceLanguage: _sourceLang, targetLanguage: _destinLang!);
-      final _translated = await _translateService.translateText(text);
+      final _translatedText = await _translateService.translateText(text);
       _translateService.close();
-      return _translated;
+      return _translatedText;
     } on LanguageNotFoundException {
       throw LanguageModelNotFoundException('Language not found');
     } catch (e) {

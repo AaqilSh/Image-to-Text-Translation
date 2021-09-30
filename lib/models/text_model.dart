@@ -3,5 +3,5 @@ class TranslatedText {
   int? length;
   String? language;
 
-  TranslatedText({required this.text, this.length, this.language});
+  TranslatedText({this.text, this.length, this.language});
 }

@@ -4,7 +4,7 @@ import 'package:translate/services/media_service.dart';
 import 'package:translate/services/status.dart';
 import 'package:translate/services/translate_service.dart';
 
-class ImageViewModel extends BaseProvider {
+class ImageViewModel extends BaseViewModel {
   String? _imagePath;
   String get imagePath => _imagePath!;
 

@@ -15,10 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<TranslateProvider>(
-            create: (_) => TranslateProvider()),
-        ChangeNotifierProvider<ImageViewProvider>(
-            create: (_) => ImageViewProvider())
+        ChangeNotifierProvider<TranslateViewModel>(
+            create: (_) => TranslateViewModel()),
+        ChangeNotifierProvider<ImageViewModel>(create: (_) => ImageViewModel())
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
