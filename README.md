@@ -1,4 +1,4 @@
-# Translate app
+# Image to Text Translation Application
 
 This is a translate app built with flutter and google machine learning kit.
 
